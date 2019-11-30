@@ -13,7 +13,7 @@ import gensim
 from gensim.models import Word2Vec
 
 def loadData():
-    with open('nyc-jobs.csv', 'rt') as f:
+    with open('nyc-jobs.csv', 'rt', encoding='utf-8') as f:
         reader = csv.reader(f)
         data = list(reader)
 
