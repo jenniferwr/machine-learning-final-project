@@ -170,7 +170,33 @@ def biasAndSalaryFreq(jobInfo2, femaleBias, maleBias):
     plt.show()
     return
 
-#def biasAndsalary():
+def biasAndsalary(avgSalary, femaleBias, maleBias):
+     #x-axis values
+    x = avgSalary
+    # y-axis values
+    y1 = femaleBias
+    y2 = maleBias
+
+    # plotting points as a scatter plot
+    plt.scatter(y1, x, label= "femaleBias", color= "red",
+            marker= "*", s=30)
+    plt.xlim(-0.002,0.004)
+    plt.scatter(y2, x, label= "maleBias", color= "green",
+            marker= "*", s=30)
+    plt.xlim(-0.002,0.004)
+
+    # x-axis label
+    plt.xlabel('Bias')
+    # frequency label
+    plt.ylabel('Salary')
+    # plot title
+    plt.title('Distribution of Bias with reference to Salary')
+    # showing legend
+    plt.legend()
+
+    # function to show the plot
+    plt.show()
+    return
 def biasAndFP(jobInfo2, femaleBias, maleBias):
     x1 = numpy.array(femaleBias)
     x2 = numpy.array(maleBias)
@@ -253,13 +279,17 @@ def main():
     jobInfo2 = numpy.array(jobInfo)
     biasAndSalaryFreq(jobInfo2, femaleBias, maleBias)
     biasAndFP(jobInfo2, femaleBias, maleBias)
-    salaryFrom =jobInfo2[1:500,4]
-    salaryTo = jobInfo2[1:500,5]
-    biasAndJobCat(jobInfo2, femaleBias, maleBias)
+    salaryFrom =jobInfo2[1:500,4].astype(float)
+    salaryTo = jobInfo2[1:500,5].astype(float)
 
-    '''avgSalary= []
-    for i in range(len(jobInfo2)):
-        avgSalary[i] = (salaryFrom[i] + salaryTo[i])/2'''
+
+    avgSalary= list()
+    for i in range(len(salaryTo)):
+        avgSalary.append((salaryFrom[i] + salaryTo[i])/2)
+    print(len(avgSalary))
+    print(len(femaleBias))
+    biasAndsalary(avgSalary, femaleBias, maleBias)
+    biasAndJobCat(jobInfo2, femaleBias, maleBias)
 
 
 main()
